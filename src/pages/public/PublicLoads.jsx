@@ -55,6 +55,10 @@ const PublicLoads = () => {
             addToast("Teklif vermek için giriş yapmalısınız!", "warning");
             return;
         }
+        if (userRole === 'SHIPPER') {
+        addToast("Yük sahipleri kendi veya başkasının yüküne teklif veremez!", "error");
+        return;
+    }
 
         if (userRole === 'TASIYICI' && !user?.aktif) {
             addToast("Belgeleriniz onaylanmadan teklif veremezsiniz.", "error");

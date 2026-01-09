@@ -27,7 +27,30 @@
     position: relative; 
     overflow: hidden;
 }
+.load-description-preview {
+    font-size: 0.9rem;
+    color: #555;
+    background: #f9f9f9;
+    padding: 5px;
+    border-left: 3px solid #007bff;
+    margin-top: 8px;
+    font-style: italic;
+}
 
+.load-features {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.feature-badge {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+.feature-badge.fragile { background: #ffebee; color: #c62828; }
+.feature-badge.stackable { background: #e8f5e9; color: #2e7d32; }
 /* Üstte sarkan badge'leri hizalayan sınıf */
 .load-status-badge, .status-badge-overlay, .internal-badge {
     position: absolute; /* Fixed değil absolute olmalı */

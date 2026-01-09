@@ -277,6 +277,53 @@
     display: flex;
     justify-content: flex-start;
 }
+.credit-card-form-container {
+    margin-top: 20px;
+    padding: 15px;
+    background: #fdfdfd;
+    border: 1px dashed #ced4da;
+    border-radius: 8px;
+    animation: slideDown 0.3s ease-out;
+}
+
+.card-input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.card-input-group label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+
+.card-input-group input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.card-row {
+    display: flex;
+    gap: 15px;
+}
+
+.card-note {
+    font-size: 11px;
+    color: #868e96;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 .back-btn {
     background: #3d3d3d;
     color: white;
@@ -286,4 +333,29 @@
     cursor: pointer;
     font-weight: bold;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.badge-selected {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border: 1px solid #c3e6cb;
+}
+
+.badge-rejected {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border: 1px solid #f5c6cb;
+}
+
+.status-badge-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

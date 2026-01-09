@@ -29,29 +29,44 @@ const Navbar = ({ currentPath }) => {
 
   // Bildirim tıklandığında yapılacak işlemler
   const handleNotificationClick = async (notification) => {
-    try {
-      await notificationService.markAsRead(notification.id);
-      fetchNotifs();
-      const message = notification.message.toLowerCase();
-      
-      if (message.includes("teklif geldi") || message.includes("teklifiniz var")) {
-          navigate(`/shipper/manage-offers/${notification.loadId}`);
-      } 
-      else if (message.includes("kabul edildi") || message.includes("onaylandı")) {
-          navigate(`/driver/my-offers`);
-      }
-      else if ((message.includes("teslim edildi") || message.includes("tamamlandı")) && user.userType === 'YUK_SAHIBI') {
-          navigate(`/shipper/completed-loads`, { 
-              state: { autoOpenRating: true, loadId: notification.loadId } 
-          });
-      }
-      else if (message.includes("yola çıktı")) {
-          navigate(`/driver/active-loads`);
-      }
-    } catch (err) {
-      console.error("Bildirim işlemi sırasında hata:", err);
+  try {
+    // 1. Önce okundu bilgisini DB'ye gönder
+    await notificationService.markAsRead(notification.id);
+    
+    // 2. Listeyi güncelle (sayı düşsün)
+    fetchNotifs();
+
+    // 3. YÖNLENDİRME KONTROLÜ (Burası kritik!)
+    // notification.message içindeki kelimelere göre rotayı belirliyoruz
+    const msg = (notification.message || notification.mesaj || "").toLowerCase();
+    const loadId = notification.loadId;
+
+    console.log("Tıklanan Bildirim Mesajı:", msg); // Kontrol için log
+
+    if (msg.includes("teklif geldi") || msg.includes("teklifiniz var")) {
+      navigate(`/shipper/manage-offers/${loadId}`);
+    } 
+    else if (msg.includes("kabul edildi") || msg.includes("onaylandı")) {
+      navigate(`/driver/my-offers`);
     }
-  };
+    else if (msg.includes("teslim edildi") || msg.includes("tamamlandı")) {
+      // Yük sahibi ise puanlama sayfasına, sürücü ise tamamlananlara
+      if (user.userType === 'YUK_SAHIBI') {
+        navigate(`/shipper/completed-loads`, { 
+          state: { autoOpenRating: true, loadId: loadId } 
+        });
+      } else {
+        navigate(`/driver/completed-loads`);
+      }
+    }
+    else if (msg.includes("yola çıktı") || msg.includes("yüklendi")) {
+      navigate(user.userType === 'YUK_SAHIBI' ? `/shipper/loads` : `/driver/active-loads`);
+    }
+
+  } catch (err) {
+    console.error("Bildirim yönlendirme hatası:", err);
+  }
+};
 
 useEffect(() => {
     // İlk yüklemede çalıştır
@@ -70,7 +85,7 @@ useEffect(() => {
           console.log("Kullanıcı aktiflik durumu kontrol ediliyor...");
           refreshUser();
       }
-    }, 20000); 
+    }, 5000); 
 
     return () => clearInterval(interval);
   }, [fetchNotifs, isAuthenticated, user?.aktif, refreshUser]); // Bağımlılıklara ekledik

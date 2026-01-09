@@ -1,79 +1,94 @@
 .bellWrapper {
   position: relative;
-  cursor: pointer;
+  display: inline-flex; /* Navbar içinde sadece ikonu kadar yer kaplar */
+  align-items: center;
 }
 
 .iconContainer {
+  cursor: pointer;
   position: relative;
-  padding: 5px;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background 0.2s;
+  color: #64748b;
+}
+
+.iconContainer:hover {
+  background: #f1f5f9;
+  color: #1e293b;
 }
 
 .badge {
   position: absolute;
-  top: -2px;
-  right: -2px;
-  background-color: #ff4d4f;
+  top: 4px;
+  right: 4px;
+  background-color: #ef4444;
   color: white;
   border-radius: 50%;
-  padding: 2px 6px;
+  padding: 2px 5px;
   font-size: 10px;
   font-weight: bold;
   border: 2px solid white;
 }
 
+/* Panel sadece açıldığında görünür ve Navbar'ın üstünde yüzer */
 .dropdown {
   position: absolute;
+  top: 45px; 
   right: 0;
-  top: 40px;
-  width: 300px;
+  width: 320px; /* Genişlik sadece burada var */
   background: white;
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
   z-index: 2000;
+  border: 1px solid #e2e8f0;
   overflow: hidden;
-  border: 1px solid #eee;
 }
 
-.dropdown h4 {
-  padding: 15px;
-  margin: 0;
-  border-bottom: 1px solid #f0f0f0;
-  font-size: 1rem;
+.dropdownHeader {
+  padding: 12px 15px;
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.listWrapper {
-  max-height: 400px;
-  overflow-y: auto;
-}
+.dropdownHeader h4 { margin: 0; font-size: 15px; color: #1e293b; }
+
+.listWrapper { max-height: 380px; overflow-y: auto; }
 
 .item {
   padding: 12px 15px;
-  border-bottom: 1px solid #f9f9f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f8fafc;
+  cursor: pointer;
   transition: background 0.2s;
 }
 
-.item:hover {
-  background-color: #f5f7fa;
+.item:hover { background-color: #f8fafc; }
+
+.unread { background-color: #f0f9ff; }
+
+.itemContent p {
+  margin: 0;
+  font-size: 13.5px;
+  color: #334155;
+  line-height: 1.4;
 }
 
-.unread {
-  background-color: #e6f7ff; /* Okunmamışlar hafif mavi */
-  border-left: 4px solid #1890ff;
+.time { font-size: 11px; color: #94a3b8; margin-top: 4px; display: block; }
+
+.unreadDot {
+  width: 8px;
+  height: 8px;
+  background: #3b82f6;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-left: 10px;
 }
 
-.item p {
-  margin: 0 0 5px 0;
-  font-size: 0.9rem;
-  color: #333;
-}
+.empty { padding: 30px; text-align: center; color: #94a3b8; font-size: 13px; }
 
-.item span {
-  font-size: 0.75rem;
-  color: #999;
-}
-
-.empty {
-  padding: 20px;
-  text-align: center;
-  color: #888;
-}
+.refreshBtn { background: none; border: none; cursor: pointer; font-size: 14px; }

@@ -63,11 +63,24 @@ function DriverAvailableLoads() {
             <span className="load-status-badge">YAYINDA</span>
         </div>
                             
-                            <div className="card-body">
-                                <p><strong>📍 İlçe:</strong> {load.kalkisAdresi?.ilce || "-"} / {load.varisAdresi?.ilce || "-"}</p>
-                                <p><strong>📦 Ağırlık:</strong> {load.agirlikKg} kg</p>
-                                <p><strong>📅 Teslim:</strong> {load.teslimTarihi ? new Date(load.teslimTarihi).toLocaleDateString('tr-TR') : 'Bilinmiyor'}</p>
-                            </div>
+                         <div className="card-body">
+    <p><strong>📍 İlçe:</strong> {load.kalkisAdresi?.ilce || "-"} / {load.varisAdresi?.ilce || "-"}</p>
+    <p><strong>📦 Tip & Ağırlık:</strong> {load.yukTipi} - {load.agirlikKg} kg</p>
+    <p><strong>📅 Teslim:</strong> {load.teslimTarihi ? new Date(load.teslimTarihi).toLocaleDateString('tr-TR') : 'Bilinmiyor'}</p>
+    
+    {/* 🔥 Açıklama kısmını buraya ekledik knk */}
+    {load.aciklama && (
+        <p className="load-description-preview">
+            <strong>📝 Açıklama:</strong> {load.aciklama.length > 50 ? load.aciklama.substring(0, 50) + "..." : load.aciklama}
+        </p>
+    )}
+    
+    {/* Özellikler: Kırılabilir/İstiflenebilir ikonları */}
+    <div className="load-features">
+        {load.isFragile && <span className="feature-badge fragile">🍷 Kırılabilir</span>}
+        {load.isStackable && <span className="feature-badge stackable">📦 İstiflenebilir</span>}
+    </div>
+</div>
                         </div>
 
                         <div className="card-footer">
