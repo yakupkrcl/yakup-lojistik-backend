@@ -21,7 +21,7 @@ import com.yakupProje.enums.UserType;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "users", schema = "yuk_takip_sistemi")
+@Table(name = "users")
 @EqualsAndHashCode(exclude = {
 	    "trucks", "createdLoads", "offers", "transactionsYapan", "transactionsAlan",
 	    "ratingsPuanlayan", "ratingsPuanlanan", "messagesGonderen", "messagesAlici",
