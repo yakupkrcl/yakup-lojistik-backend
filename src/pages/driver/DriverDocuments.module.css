@@ -1,0 +1,112 @@
+.container {
+  max-width: 850px;
+  margin: 30px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.title {
+  color: #1e293b;
+  margin-bottom: 30px;
+  font-weight: 800;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.rowCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s;
+}
+
+.rowCard.completed {
+  border-left: 6px solid #10b981;
+  background: #f0fdf4;
+}
+
+.docInfo {
+  flex: 1;
+}
+
+.docInfo h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #334155;
+}
+
+.statusBadge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.fileLabel {
+  background: #e2e8f0;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.uploadBtn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.uploadBtn:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* İncelemede / Onay Bekliyor */
+.IN_REVIEW {
+  border-left: 6px solid #f59e0b; /* Turuncu/Sarı */
+  background: #fffbeb;
+}
+
+.statusBadge.IN_REVIEW {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* Onaylandı */
+.TAMAMLANDI {
+  border-left: 6px solid #10b981;
+  background: #f0fdf4;
+}
+
+.statusBadge.TAMAMLANDI {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* Yüklenmedi / Beklemede */
+.BEKLEMEDE {
+  border-left: 6px solid #cbd5e1;
+}

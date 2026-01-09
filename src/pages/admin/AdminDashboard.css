@@ -1,0 +1,28 @@
+.admin-dashboard-container { padding: 2rem; max-width: 1200px; margin: 0 auto; background: #f8fafc; min-height: 100vh; }
+.admin-header { display: flex; justify-content: space-between; margin-bottom: 2rem; }
+.admin-header h1 { color: #0f172a; font-weight: 800; font-size: 2rem; }
+
+.admin-stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+
+.admin-stat-card { 
+    background: white; padding: 2rem; border-radius: 20px; 
+    border: 1px solid #e2e8f0; cursor: pointer; transition: 0.3s; 
+}
+.admin-stat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+
+/* Koyu kartın içindeki yazıların her zaman beyaz kalması için */
+.admin-stat-card.main-profit { background: #1e293b; color: #ffffff !important; border: none; }
+.admin-stat-card.main-profit h2, 
+.admin-stat-card.main-profit p, 
+.admin-stat-card.main-profit .label { color: #ffffff !important; }
+
+/* Hızlı Menü Butonları */
+.quick-nav-grid { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
+.nav-item { 
+    flex: 1; min-width: 180px; padding: 1rem; border-radius: 12px; 
+    border: 2px solid #e2e8f0; background: white; 
+    color: #1e293b !important; /* Yazı rengini zorla siyah/lacivert yap */
+    font-weight: 700; cursor: pointer; transition: 0.2s; font-size: 0.95rem;
+}
+.nav-item:hover { background: #f1f5f9; border-color: #3b82f6; }
+.nav-item.highlight { background: #3b82f6; color: white !important; border: none; }

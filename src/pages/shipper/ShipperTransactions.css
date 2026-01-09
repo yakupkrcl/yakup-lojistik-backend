@@ -1,0 +1,112 @@
+.shipper-transactions-container {
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin: 20px;
+}
+
+.header-section {
+    margin-bottom: 30px;
+}
+
+.header-section h2 {
+    color: #1a2a6c;
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.header-section p {
+    color: #7f8c8d;
+}
+
+.shipper-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.shipper-table th {
+    background-color: #f4f7f6;
+    color: #2c3e50;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.shipper-table td {
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+
+.yuk-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.yuk-info span {
+    font-size: 12px;
+    color: #95a5a6;
+}
+
+.amount-cell {
+    font-weight: bold;
+    color: #2e7d32;
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.status-badge.BEKLEMEDE { background-color: #fff3e0; color: #ef6c00; }
+.status-badge.TAMAMLANDI { background-color: #e8f5e9; color: #2e7d32; }
+.status-badge.IPTAL_EDILDI { background-color: #ffebee; color: #c62828; }
+
+.shipper-container-msg {
+    text-align: center;
+    padding: 50px;
+    font-size: 18px;
+    color: #666;
+}
+.ref-cell {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: #34495e;
+}
+
+.driver-name {
+    color: #2980b9;
+    font-weight: 500;
+}
+
+.no-driver {
+    color: #95a5a6;
+    font-style: italic;
+    font-size: 13px;
+}
+.sticky-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    max-width: 900px; /* İçerik genişliğiyle aynı */
+    background-color:white;
+    padding: 20px;
+    z-index: 100;
+    display: flex;
+    justify-content: flex-start;
+}
+.back-btn {
+    background: #3d3d3d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}

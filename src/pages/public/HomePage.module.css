@@ -1,0 +1,99 @@
+/* HomePage.module.css */
+
+.homeContainer {
+    font-family: sans-serif;
+}
+
+/* Hero Section (Üst Başlık ve CTA) */
+.heroSection {
+    background-color: #007bff;
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.heroSection h1 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.heroSection p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.authButtons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* CTA Butonları */
+.ctaButtonPrimary,
+.ctaButtonSecondary {
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.ctaButtonPrimary {
+    background-color: #28a745; /* Yeşil */
+    color: white;
+}
+
+.ctaButtonPrimary:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+.ctaButtonSecondary {
+    background-color: white;
+    color: #007bff;
+    border: 2px solid white;
+}
+
+.ctaButtonSecondary:hover {
+    background-color: #f0f8ff;
+    transform: translateY(-2px);
+}
+
+/* Özellikler Bölümü */
+.featureSection {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.featureCard {
+    flex: 1;
+    min-width: 280px;
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.featureCard h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.featureLink {
+    display: inline-block;
+    margin-top: 15px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+} 
+
+.featureLink:hover {
+    text-decoration: underline;
+}

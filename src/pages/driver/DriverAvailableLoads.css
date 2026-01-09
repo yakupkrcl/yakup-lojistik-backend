@@ -1,0 +1,138 @@
+.available-loads-container {
+    max-width: 850px; /* Konteynırı daralttık, böylece yanlardan kırpılmış durur */
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.load-cards-list {
+    display: flex;
+    flex-direction: column; /* Alt alta dizilim */
+    gap: 25px;
+    align-items: center; /* Kartları ortalar */
+}
+
+/* Yük Pazarı Kartı için */
+.available-load-card {
+    position: relative; /* Badge'i bu kartın içine hapseder */
+    width: 100%;
+    max-width: 800px;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden; /* Dışarı taşmaları engeller */
+    /* ... diğer stillerin ... */
+}
+
+/* Aktif Yük Kartı için (Diğer CSS dosyan) */
+.load-card, .load-card-item {
+    position: relative; 
+    overflow: hidden;
+}
+
+/* Üstte sarkan badge'leri hizalayan sınıf */
+.load-status-badge, .status-badge-overlay, .internal-badge {
+    position: absolute; /* Fixed değil absolute olmalı */
+    top: 10px; 
+    right: 10px;
+    z-index: 10; /* Haritanın veya içeriğin üstünde kalsın ama sayfanın değil */
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.75rem;
+    pointer-events: none; /* Tıklamayı engellemesin */
+}
+.available-load-card {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 800px; /* Kartın aşırı yayılmasını engeller */
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.available-load-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Sol taraftaki durum çizgisi (status-yayinda vb. sınıfları için) */
+[class*="status-"] {
+    border-left: 8px solid #22c55e; /* Varsayılan yeşil şerit */
+}
+
+.card-main-content {
+    padding: 20px 25px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #1e293b;
+}
+
+/* Teknik detayları 2 sütunlu mini bir ızgara yaptık */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.info-grid p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #64748b;
+}
+
+/* NOT KISMI: Alt kısma gri ve belirgin bir kutu */
+.load-note-section {
+    background: #f8fafc;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #475569;
+    border: 1px dashed #cbd5e1;
+    line-height: 1.4;
+}
+
+/* ALT KISIM: Teklif ve Buton */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f1f5f9;
+    padding: 12px 25px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.offer-count {
+    font-weight: 600;
+    color: #475569;
+}
+
+.make-offer-button {
+    background: #2563eb; /* Mavi veya yeşil yapabilirsin */
+    color: white;
+    padding: 10px 25px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.make-offer-button:hover {
+    background: #1d4ed8;
+}

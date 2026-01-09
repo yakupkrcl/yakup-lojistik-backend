@@ -1,0 +1,115 @@
+.admin-transactions-container {
+  padding: 20px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.admin-transactions-container h1 {
+  color: #2c3e50;
+  margin-bottom: 25px;
+  font-size: 24px;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.admin-table th {
+  background-color: #3498db;
+  color: white;
+  text-align: left;
+  padding: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.admin-table td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  color: #555;
+  font-size: 14px;
+}
+
+.admin-table tr:hover {
+  background-color: #f1f7fd;
+  transition: background-color 0.3s ease;
+}
+
+/* Durum Rozetleri (Status Badges) */
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.status-badge.BEKLEMEDE {
+  background-color: #fef9e7;
+  color: #f1c40f;
+  border: 1px solid #f1c40f;
+}
+
+.status-badge.TAMAMLANDI {
+  background-color: #e8f8f5;
+  color: #27ae60;
+  border: 1px solid #27ae60;
+}
+
+.status-badge.IPTAL_EDILDI {
+  background-color: #fdedec;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+}
+
+/* Mobil Uyumluluk */
+@media (max-width: 768px) {
+  .admin-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+.sticky-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    max-width: 900px; /* İçerik genişliğiyle aynı */
+    background-color:white;
+    padding: 20px;
+    z-index: 100;
+    display: flex;
+    justify-content: flex-start;
+}
+.back-btn {
+    background: #3d3d3d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.user-info { display: flex; flex-direction: column; }
+.user-name { font-weight: 600; color: #2c3e50; font-size: 0.9rem; }
+.route-text { color: #7f8c8d; font-size: 0.75rem; margin-top: 2px; }
+.price-stack { display: flex; flex-direction: column; }
+.total-price { color: #27ae60; font-weight: bold; }
+.price-note { font-size: 0.7rem; color: #95a5a6; }
+.commission-amount { color: #e67e22; font-weight: 600; }
+.search-bar input {
+  padding: 8px 15px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  width: 250px;
+  outline: none;
+}

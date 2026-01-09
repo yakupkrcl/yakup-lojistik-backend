@@ -1,0 +1,79 @@
+.bellWrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.iconContainer {
+  position: relative;
+  padding: 5px;
+}
+
+.badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background-color: #ff4d4f;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  width: 300px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  z-index: 2000;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+.dropdown h4 {
+  padding: 15px;
+  margin: 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 1rem;
+}
+
+.listWrapper {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.item {
+  padding: 12px 15px;
+  border-bottom: 1px solid #f9f9f9;
+  transition: background 0.2s;
+}
+
+.item:hover {
+  background-color: #f5f7fa;
+}
+
+.unread {
+  background-color: #e6f7ff; /* Okunmamışlar hafif mavi */
+  border-left: 4px solid #1890ff;
+}
+
+.item p {
+  margin: 0 0 5px 0;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.item span {
+  font-size: 0.75rem;
+  color: #999;
+}
+
+.empty {
+  padding: 20px;
+  text-align: center;
+  color: #888;
+}

@@ -1,0 +1,127 @@
+/* Genel Konteyner */
+.driver-offers-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    font-family: Arial, sans-serif;
+}
+
+.driver-offers-container h2 {
+    color: #007bff;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+.summary-text {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* Teklif Kartları Listesi */
+.offers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.status-pending { border-left: 5px solid #ffa500; } /* Turuncu */
+.status-accepted { border-left: 5px solid #2ecc71; } /* Yeşil */
+.status-on-way { border-left: 5px solid #3498db; } /* Mavi */
+.status-rejected { border-left: 5px solid #e74c3c; } /* Kırmızı */
+.status-completed { border-left: 5px solid #27ae60; background-color: #1762ad; } /* Koyu Yeşil */
+
+.status-filter-bar {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    background: rgb(28, 117, 169);
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background: #333;
+    color: white;
+    border-color: #333;
+}
+.offer-card {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #eee;
+    margin-bottom: 15px;
+}
+
+.offer-status-badge {
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.9em;
+    color: white;
+}
+
+/* Durum Renkleri */
+.status-accepted {
+    background-color: #28a745;
+}
+
+.status-rejected {
+    background-color: #dc3545;
+}
+
+.status-pending {
+    background-color: #ffc107;
+    color: #333;
+}
+
+/* Kart Gövde */
+.card-body p {
+    margin: 5px 0;
+}
+
+.offer-price {
+    font-weight: bold;
+}
+
+/* Footer */
+.card-footer {
+    margin-top: 15px;
+    padding: 10px;
+    border-top: 1px dashed #eee;
+    border-radius: 0 0 8px 8px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #28a745;
+}
+
+.accepted-footer {
+    background-color: #28a745;
+}
+.sticky-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    max-width: 900px; /* İçerik genişliğiyle aynı */
+    background-color: #f0f2f5;
+    padding: 20px;
+    z-index: 100;
+    display: flex;
+    justify-content: flex-start;
+}

@@ -1,0 +1,113 @@
+/* src/pages/public/LoginPage.module.css */
+
+/* --- TEMEL RENK PALETİ --- */
+:root {
+    --primary-color: #007bff; /* Mavi (Butonlar, Linkler) */
+    --accent-color: #ff9900; /* Turuncu (Vurgu, Proje Logosu) */
+    --background-light: #f4f7f9;
+    --text-dark: #333;
+    --border-light: #ccc;
+}
+
+.loginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Yüksekliği artırdık */
+    background-color: var(--background-light);
+}
+
+.loginForm {
+    background: white;
+    padding: 35px 45px;
+    border-radius: 6px; /* Hafif yuvarlak köşeler */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); /* Hafif gölge */
+    width: 100%;
+    max-width: 400px;
+}
+
+.loginForm h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--text-dark);
+    font-size: 24px;
+    border-bottom: 2px solid var(--accent-color); /* Turuncu çizgi vurgusu */
+    padding-bottom: 10px;
+}
+
+.formGroup {
+    margin-bottom: 25px;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.formGroup input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.formGroup input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.submitButton {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--primary-color); 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+.submitButton:hover:not([disabled]) {
+    background-color: #0056b3;
+}
+
+.submitButton:disabled {
+    background-color: #a0c3e8;
+    cursor: not-allowed;
+}
+
+.error {
+    color: white;
+    background-color: #dc3545; /* Kırmızı hata rengi */
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.registerLink {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--text-dark);
+}
+
+.registerLink a {
+    color: var(--accent-color); /* Turuncu link rengi */
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.registerLink a:hover {
+    text-decoration: underline;
+}

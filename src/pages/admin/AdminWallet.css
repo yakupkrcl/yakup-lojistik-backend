@@ -1,0 +1,28 @@
+.admin-wallet-container { padding: 3rem; max-width: 1100px; margin: 0 auto; }
+
+.premium-balance-board {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2rem;
+    background: #1e293b;
+    padding: 3rem;
+    border-radius: 32px;
+    color: white;
+    margin-bottom: 3rem;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+}
+
+.balance-box.main h1 { font-size: 3.5rem; margin: 15px 0; color: #10b981; }
+
+.admin-finance-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.admin-finance-table th { background: #f8fafc; padding: 1.2rem; text-align: left; color: #64748b; }
+.admin-finance-table td { padding: 1.2rem; border-bottom: 1px solid #f1f5f9; }
+
+.profit-text { color: #10b981; font-weight: 800; }

@@ -1,0 +1,57 @@
+.container {
+  padding: 20px;
+}
+
+.card {
+  max-width: 500px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  background: #ff7a00;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.sticky-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    max-width: 900px; /* İçerik genişliğiyle aynı */
+    background-color:white;
+    padding: 20px;
+    z-index: 100;
+    display: flex;
+    justify-content: flex-start;
+}
+.back-btn {
+    background: #3d3d3d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}

@@ -1,0 +1,152 @@
+/* Ana Sayfa Yapısı */
+.my-ratings-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8fafc; /* Soft arka plan */
+    min-height: 100vh;
+}
+
+/* Üst Header Alanı */
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    color: white;
+    border-radius: 24px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+}
+
+.page-header p {
+    opacity: 0.8;
+    font-size: 1.1rem;
+}
+
+/* 🚩 İKİLİ SIRALAMA (GRID) */
+.ratings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Yan yana 2 kart */
+    gap: 25px;
+    width: 100%;
+}
+
+/* Modern Rating Kartı */
+.rating-card {
+    background: white;
+    border-radius: 20px;
+    padding: 24px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.rating-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: #3b82f6; /* Hover'da mavi çerçeve */
+}
+
+/* Kart Header */
+.rating-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.reviewer-name {
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 1.1rem;
+}
+
+.rating-date {
+    font-size: 0.85rem;
+    color: #64748b;
+    background: #f1f5f9;
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+/* Yıldızlar */
+.stars {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+/* Yorum Metni */
+.comment {
+    font-style: italic;
+    color: #475569;
+    line-height: 1.6;
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 12px;
+    border-left: 4px solid #3b82f6;
+    margin-bottom: 20px;
+}
+
+/* Kart Alt Kısmı */
+.rating-footer {
+    border-top: 1px solid #f1f5f9;
+    padding-top: 15px;
+}
+
+.load-tag {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #3b82f6;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Geri Dön Butonu & Sticky Header */
+.sticky-header {
+    margin-bottom: 20px;
+}
+
+.back-btn {
+    background: white;
+    color: #1e293b;
+    border: 1px solid #e2e8f0;
+    padding: 10px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.back-btn:hover {
+    background: #1e293b;
+    color: white;
+}
+
+/* Mobil Uyumluluk */
+@media (max-width: 900px) {
+    .ratings-grid {
+        grid-template-columns: 1fr; /* Mobilde tek sütun */
+    }
+    
+    .page-header h1 {
+        font-size: 1.8rem;
+    }
+}
+
+.no-ratings, .loading-state {
+    text-align: center;
+    padding: 50px;
+    color: #64748b;
+    font-weight: 600;
+}

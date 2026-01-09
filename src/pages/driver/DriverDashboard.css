@@ -1,0 +1,189 @@
+:root {
+    --primary: #2563eb;       /* Canlı Mavi */
+    --success: #059669;       /* Zümrüt Yeşili */
+    --warning: #d97706;       /* Kehribar Turuncu */
+    --info: #7c3aed;          /* Kraliyet Moru */
+    --bg-light: #f1f5f9;      /* Arka Plan */
+    --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.driver-dashboard-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: var(--bg-light);
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Header: Degrade Geçişli ve Şık */
+.dashboard-header {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    padding: 2.5rem;
+    border-radius: 24px;
+    margin-bottom: 2.5rem;
+    color: white;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-header h1 {
+    font-size: 2rem;
+    margin: 0;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    color: #cbd5e1;
+    margin-top: 8px;
+    font-size: 1rem;
+}
+
+/* İstatistik Kartları */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.15);
+}
+
+/* Kart Sol Şeritleri (Vurgu Renkleri) */
+.stat-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 8px;
+}
+
+.total-revenue::before { background: var(--success); }
+.rating-card::before { background: var(--warning); }
+.accepted-loads::before { background: var(--info); }
+.available-loads::before { background: var(--primary); }
+
+.stat-card .label {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-card h2 {
+    font-size: 2.2rem;
+    margin: 1rem 0;
+    font-weight: 900;
+}
+
+/* Sayıların Renkleri */
+.total-revenue h2 { color: var(--success); }
+.rating-card h2 { color: var(--warning); }
+.accepted-loads h2 { color: var(--info); }
+.available-loads h2 { color: var(--primary); }
+
+.feedback-preview {
+    font-size: 0.9rem;
+    color: #475569;
+    background: #fffbeb;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px dashed var(--warning);
+    margin-top: 10px;
+}
+
+/* Hızlı İşlemler Paneli */
+.quick-actions {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 24px;
+    box-shadow: var(--card-shadow);
+}
+
+.quick-actions h3 {
+    margin-top: 0;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #1e293b;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    flex: 1;
+    min-width: 180px;
+    padding: 1.2rem;
+    border-radius: 16px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.action-btn.primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.action-btn.primary:hover {
+    background: #1d4ed8;
+    transform: scale(1.02);
+}
+
+.action-btn:not(.primary) {
+    background: #f8fafc;
+    color: #1e293b;
+    border: 2px solid #e2e8f0;
+}
+
+.action-btn:not(.primary):hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+/* Mobil Düzenleme */
+@media (max-width: 768px) {
+    .driver-dashboard-container { padding: 1rem; }
+    .dashboard-header { 
+        padding: 1.5rem;
+        flex-direction: column; 
+        text-align: center; 
+        gap: 1rem; 
+    }
+    .stats-grid { grid-template-columns: 1fr; }
+    .action-btn { width: 100%; }
+}

@@ -1,0 +1,538 @@
+/* =====================
+   GENEL SAYFA
+===================== */
+.active-loads-page {
+  min-height: 100vh;
+  padding: 24px;
+  background: linear-gradient(135deg, #f3f6fb, #e9eef5);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* =====================
+   HEADER
+===================== */
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1f2937;
+}
+
+.page-header p {
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* =====================
+   GRID
+===================== */
+.active-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 22px;
+}
+
+/* =====================
+   EMPTY STATE
+===================== */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+/* =====================
+   CARD
+===================== */
+.active-card {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+  transition: transform .25s ease, box-shadow .25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.active-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 55px rgba(0,0,0,0.14);
+}
+
+/* =====================
+   STATUS TAG
+===================== */
+.status-tag {
+  padding: 10px 14px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: .5px;
+}
+
+.status-tag.TEKLIF_KABUL_EDILDI {
+  background: linear-gradient(90deg, #6366f1, #4f46e5);
+}
+
+.status-tag.YOLDA {
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+
+.status-tag.TESLIM_EDILDI {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+}
+
+/* =====================
+   MAP
+===================== */
+.map-wrapper {
+  height: 240px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* =====================
+   CARD BODY
+===================== */
+.card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* =====================
+   ROUTE INFO
+===================== */
+.route-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.city-info {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.arrow-icon {
+  color: #9ca3af;
+  font-size: 18px;
+}
+
+.load-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #374151;
+}
+
+/* =====================
+   CARD FOOTER
+===================== */
+.card-footer {
+  margin-top: auto;
+  display: flex;
+  gap: 12px;
+}
+
+/* =====================
+   BUTTONS
+===================== */
+.btn-main {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .25s ease;
+}
+
+.btn-main.start {
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  color: #fff;
+}
+
+.btn-main.finish {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  color: #fff;
+}
+
+.btn-main:hover {
+  transform: translateY(-2px);
+  opacity: .95;
+}
+
+/* =====================
+   MODAL CODE INPUT
+===================== */
+.code-input-container {
+  margin-top: 10px;
+}
+
+.delivery-code-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 15px;
+  text-align: center;
+  letter-spacing: 6px;
+  font-weight: 700;
+  outline: none;
+}
+
+.delivery-code-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,.2);
+}
+
+/* =====================
+   LOADER
+===================== */
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.truck-loader {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 6px solid #e5e7eb;
+  border-top-color: #3b82f6;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+/* =====================
+   GENEL SAYFA
+===================== */
+.active-loads-page {
+  min-height: 100vh;
+  padding: 24px;
+  background: linear-gradient(135deg, #f3f6fb, #e9eef5);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* =====================
+   HEADER
+===================== */
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1f2937;
+}
+
+.page-header p {
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* =====================
+   GRID
+===================== */
+.active-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 22px;
+}
+
+/* =====================
+   EMPTY STATE
+===================== */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+/* =====================
+   CARD
+===================== */
+.active-card {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+  transition: transform .25s ease, box-shadow .25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.active-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 55px rgba(0,0,0,0.14);
+}
+
+/* =====================
+   STATUS TAG
+===================== */
+.status-tag {
+  padding: 10px 14px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: .5px;
+}
+
+.status-tag.TEKLIF_KABUL_EDILDI {
+  background: linear-gradient(90deg, #6366f1, #4f46e5);
+}
+
+.status-tag.YOLDA {
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+
+.status-tag.TESLIM_EDILDI {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+}
+
+/* =====================
+   MAP
+===================== */
+.map-wrapper {
+  height: 240px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* =====================
+   CARD BODY
+===================== */
+.card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* =====================
+   ROUTE INFO
+===================== */
+.route-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.city-info {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.arrow-icon {
+  color: #9ca3af;
+  font-size: 18px;
+}
+
+.load-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #374151;
+}
+
+/* =====================
+   CARD FOOTER
+===================== */
+.card-footer {
+  margin-top: auto;
+  display: flex;
+  gap: 12px;
+}
+
+/* =====================
+   BUTTONS
+===================== */
+.btn-main {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .25s ease;
+}
+
+.btn-main.start {
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  color: #fff;
+}
+
+.btn-main.finish {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  color: #fff;
+}
+
+.btn-main:hover {
+  transform: translateY(-2px);
+  opacity: .95;
+}
+
+/* =====================
+   MODAL CODE INPUT
+===================== */
+.code-input-container {
+  margin-top: 10px;
+}
+
+.delivery-code-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 15px;
+  text-align: center;
+  letter-spacing: 6px;
+  font-weight: 700;
+  outline: none;
+}
+
+.delivery-code-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,.2);
+}
+
+/* =====================
+   LOADER
+===================== */
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.truck-loader {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 6px solid #e5e7eb;
+  border-top-color: #3b82f6;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+/* HEADER GÜNCELLEME */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 20px 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+}
+
+.header-title-area h1 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* YANIP SÖNEN CANLI İKONU */
+.live-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #ef4444;
+  border-radius: 50%;
+  animation: pulse-live 1.5s infinite;
+}
+
+@keyframes pulse-live {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.5; }
+  100% { transform: scale(1); opacity: 1; }
+}
+/* KART İÇİ CANLI KONUM SÜSÜ */
+.tracking-status-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: #f8fafc;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 13px;
+  color: #475569;
+}
+
+.tracking-status-bar i {
+  color: #3b82f6;
+}
+
+.status-text-pulse {
+  color: #10b981;
+  font-weight: 600;
+}
+
+/* ŞEHİRLER ARASI ÇİZGİ TASARIMI */
+.route-visualizer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 10px 0;
+  gap: 10px;
+}
+
+.route-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #cbd5e1;
+}
+
+.route-dot.active {
+  background: #3b82f6;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.route-line {
+  flex: 1;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, #cbd5e1, #cbd5e1 4px, transparent 4px, transparent 8px);
+}

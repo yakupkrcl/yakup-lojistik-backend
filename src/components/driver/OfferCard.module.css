@@ -1,0 +1,43 @@
+
+
+.card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.card h3 {
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.status {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: white;
+    font-size: 0.9em;
+    margin-left: 5px;
+}
+
+.pending {
+    background-color: #ffc107; 
+}
+
+.accepted {
+    background-color: #28a745; 
+}
+
+.rejected {
+    background-color: #dc3545; 
+}
+
+.date {
+    font-size: 0.85em;
+    color: #777;
+    margin-top: 10px;
+}

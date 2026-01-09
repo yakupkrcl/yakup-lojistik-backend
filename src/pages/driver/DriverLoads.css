@@ -1,0 +1,50 @@
+.driver-loads-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.driver-loads-title {
+    color: #007bff;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.driver-loads-loading {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.driver-load-card {
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 15px;
+    transition: transform 0.2s;
+}
+
+.driver-load-card:hover {
+    transform: translateY(-3px);
+}
+
+.status-actions {
+    margin-top: 10px;
+}
+
+.status-actions .MuiButton-root {
+    font-weight: bold;
+}
+.sticky-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    max-width: 900px; /* İçerik genişliğiyle aynı */
+    background-color: #f0f2f5;
+    padding: 20px;
+    z-index: 100;
+    display: flex;
+    justify-content: flex-start;
+}

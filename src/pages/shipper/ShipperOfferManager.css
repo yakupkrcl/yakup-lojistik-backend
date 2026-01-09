@@ -1,0 +1,289 @@
+/* ShipperOfferManager.css */
+
+.offer-manager-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+}
+
+.manager-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 1rem;
+}
+
+.manager-header h2 {
+    color: #2c3e50;
+    margin: 0;
+}
+
+.badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Durum Renkleri */
+.badge.YAYINDA { background: #e3f2fd; color: #1976d2; }
+.badge.TEKLIF_KABUL_EDILDI { background: #e8f5e9; color: #2e7d32; }
+.badge.YOLDA { background: #fff3e0; color: #ef6c00; }
+
+.offers-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.offers-table th {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    text-align: left;
+    padding: 1.2rem;
+    font-weight: 600;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.offers-table td {
+    padding: 1.2rem;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+/* Satır Renklendirmeleri */
+.row-kabul_edildi { background-color: #f1fcf1; }
+.row-reddedildi { background-color: #fff5f5; opacity: 0.7; }
+
+.tasiyici-info strong {
+    color: #333;
+    display: block;
+    font-size: 1rem;
+}
+
+.price-cell {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 1.1rem;
+}
+
+.status-text {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.status-text.KABUL_EDILDI { color: #28a745; }
+.status-text.REDDEDILDI { color: #dc3545; }
+.status-text.BEKLEMEDE { color: #f39c12; }
+
+/* Butonlar */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn.accept {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn.accept:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+.btn.reject {
+    background-color: #ffffff;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+.btn.reject:hover {
+    background-color: #dc3545;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.no-data-box {
+    text-align: center;
+    padding: 3rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    color: #6c757d;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .offers-table {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    .manager-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
+
+.driver-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.offer-note-tooltip {
+    font-size: 0.85rem;
+    color: #d97706; /* Turuncumsu bir renk (dikkat çeksin) */
+    background-color: #fef3c7;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border-left: 3px solid #f59e0b;
+    width: fit-content;
+    max-width: 200px;
+    font-style: italic;
+}
+.driver-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.offer-note-tooltip {
+    font-size: 0.85rem;
+    color: #856404;
+    background-color: #fff3cd;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border-left: 3px solid #ffeeba;
+    font-style: italic;
+    width: fit-content;
+}
+
+.modal-custom-content {
+    padding: 15px 0;
+}
+
+.payment-selector {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.payment-option {
+    border: 2px solid #e2e8f0;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: 600;
+}
+
+.payment-option.active {
+    border-color: #3b82f6;
+    background-color: #eff6ff;
+    color: #1d4ed8;
+}
+.payment-selection-wrapper {
+    margin: 20px 0;
+    text-align: left;
+}
+
+.payment-hint {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.payment-methods-grid {
+    display: flex;
+    gap: 15px;
+}
+
+.pay-option {
+    flex: 1;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.pay-option input {
+    position: absolute;
+    opacity: 0;
+}
+
+.pay-option.active {
+    border-color: #007bff;
+    background-color: #f0f7ff;
+}
+
+.pay-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.pay-content .icon {
+    font-size: 1.5rem;
+}
+.delivery-code-badge {
+    background: #e3f2fd;
+    border: 2px dashed #1976d2;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 20px 0;
+}
+.delivery-code-badge strong {
+    font-size: 1.5rem;
+    color: #d32f2f;
+    letter-spacing: 3px;
+}
+.pay-content .text {
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+.payment-option input {
+    margin-right: 8px;
+}
+.sticky-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    max-width: 900px; /* İçerik genişliğiyle aynı */
+    background-color:white;
+    padding: 20px;
+    z-index: 100;
+    display: flex;
+    justify-content: flex-start;
+}
+.back-btn {
+    background: #3d3d3d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}

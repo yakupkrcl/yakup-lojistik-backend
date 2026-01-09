@@ -1,0 +1,201 @@
+
+
+
+.completed-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.completed-card {
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    transition: transform 0.25s ease;
+}
+
+.completed-card:hover {
+    transform: translateY(-4px);
+}
+
+.completed-route {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.completed-details p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+.completed-status {
+    margin-top: 12px;
+    padding: 8px;
+    text-align: center;
+    border-radius: 8px;
+    background-color: #22c55e;
+    color: white;
+    font-weight: bold;
+}
+
+.completed-loading,
+.completed-error,
+.completed-empty {
+    text-align: center;
+    padding: 40px;
+    font-size: 16px;
+}
+/* --- Konteynır --- */
+.completed-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* --- GRID: Yatayda Yayılmayı Önleyen Kısım --- */
+.completed-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(320px, 1fr)); /* HER ZAMAN 2'Lİ */
+    gap: 25px;
+    justify-content: center;   /* grid'i ortalar */
+    width: 100%;
+    max-width: 900px;          /* kart alanı sayfa ortasında */
+    margin: 0 auto;
+}
+/* Ana Kapsayıcı: Diğer sayfalara ikon sızmasını engeller */
+.completed-page-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative; 
+}
+
+/* Filtre Barının Navbar'ın yanına kaçmasını engeller */
+.header-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+/* KART: İçindeki her şeyi hapseden kafes */
+.completed-card {
+    position: relative; /* 🚩 KRİTİK: Rozetler bunun dışına çıkamaz */
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border: 2px solid #bdf4d0;
+    border-radius: 20px;
+    padding: 24px;
+    overflow: hidden; /* Dışarı taşan hayalet ikonları kırpar */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Rozeti kartın sağ üstüne mıhlıyoruz */
+.card-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #22c55e;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    z-index: 5;
+}
+
+.completed-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    width: 100%;
+}
+
+.completed-route {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #166534;
+    margin-top: 15px; /* Rozetle çakışmasın diye üstten boşluk */
+    line-height: 1.4;
+}
+
+/* --- KART: Senin Sevdiğin Yeşil Arka Plan (Modernize Edilmiş) --- */
+.completed-card {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); /* Soft Yeşil Gradyan */
+    border: 2px solid #bdf4d0; /* Hafif belirgin yeşil çerçeve */
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.completed-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 25px -5px rgba(34, 197, 94, 0.2);
+    border-color: #22c55e;
+}
+
+/* --- Detaylar ve Hizalama --- */
+.completed-route {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #166534; /* Koyu yeşil yazı */
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.completed-details {
+    background: rgba(255, 255, 255, 0.5); /* Kart içinde beyaz şeffaf bölme */
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.completed-details p {
+    display: flex;
+    justify-content: space-between; /* Yazıları iki yana yaslar: Başlık solda, Değer sağda */
+    margin: 8px 0;
+    font-size: 1rem;
+    color: #374151;
+    border-bottom: 1px dashed rgba(34, 197, 94, 0.2);
+    padding-bottom: 4px;
+}
+
+.completed-details p:last-child {
+    border-bottom: none;
+}
+
+/* --- Alt Kısım --- */
+.completed-status {
+    background-color: #22c55e;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Filtreleme Çubuğu Hizalaması */
+.header-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
