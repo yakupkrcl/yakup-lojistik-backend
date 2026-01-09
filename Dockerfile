@@ -1,13 +1,10 @@
-# 1. Aşama: Maven ile projeyi paketle (Build stage)
 FROM maven:3.8.5-openjdk-17 AS build
 WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
 
-# 2. Aşama: Uygulamayı çalıştır (Run stage)
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jre
 WORKDIR /app
-# pom.xml'deki artifactId'ye göre oluşan jar dosyasını kopyalıyoruz
-COPY --from=build /app/target/yuk_takip_sistemi-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
