@@ -70,44 +70,49 @@ function DriverLoads() {
             setIsUpdating(false);
         }
     };
-    // DriverLoads.jsx içine eklenecek kısım:
+    useEffect(() => {
+    let watchId;
 
-useEffect(() => {
-    let locationInterval;
-
-    // Yolda olan bir yük var mı kontrol et
+    // Yolda olan yükü bul
     const activeLoad = myLoads.find(l => l.status === 'YOLDA');
 
-    if (activeLoad) {
-        // Konum gönderme fonksiyonu
-        const sendLocation = () => {
-            if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(
-                    async (position) => {
-                        const { latitude, longitude } = position.coords;
-                        try {
-                            // Senin yazdığın servisi çağırıyoruz knk
-                            await loadService.updateLoadLocation(activeLoad.id, latitude, longitude);
-                            console.log("📍 Konum güncellendi:", latitude, longitude);
-                        } catch (err) {
-                            console.error("❌ Konum gönderilemedi:", err);
-                        }
-                    },
-                    (error) => console.error("📡 Geolocation hatası:", error),
-                    { enableHighAccuracy: true }
-                );
-            }
-        };
+    if (activeLoad && "geolocation" in navigator) {
+        console.log("🚀 Canlı takip başlatıldı, yük ID:", activeLoad.id);
 
-        // İlk girişte gönder, sonra her 10 saniyede bir tekrarla
-        sendLocation();
-        locationInterval = setInterval(sendLocation, 10000); 
+        // watchPosition: Konum her değiştiğinde otomatik tetiklenir
+        watchId = navigator.geolocation.watchPosition(
+            async (position) => {
+                const { latitude, longitude } = position.coords;
+                
+                try {
+                    // Backend'e taze veriyi basıyoruz
+                    await loadService.updateLoadLocation(activeLoad.id, latitude, longitude);
+                    console.log(`📍 Konum DB'ye basıldı: ${latitude}, ${longitude}`);
+                    
+                    // ÖNEMLİ: Eğer Driver ekranında harita varsa, 
+                    // buraya setDriverLocation({lat: latitude, lng: longitude}) diyerek 
+                    // driver'ın kendisini görmesini sağlayabilirsin.
+                } catch (err) {
+                    console.error("❌ DB Güncelleme hatası:", err);
+                }
+            },
+            (error) => console.error("📡 Geolocation hatası:", error),
+            { 
+                enableHighAccuracy: true, // En yüksek hassasiyet
+                maximumAge: 0,            // Önbellekten okuma, hep taze getir
+                timeout: 5000             // 5 saniyede bir zorla
+            }
+        );
     }
 
+    // Bileşen kapandığında veya yük bittiğinde takibi durdur
     return () => {
-        if (locationInterval) clearInterval(locationInterval);
+        if (watchId) {
+            navigator.geolocation.clearWatch(watchId);
+            console.log("🛑 Takip durduruldu.");
+        }
     };
-}, [myLoads]); // myLoads değiştikçe (yük yolda olunca) takip başlar
+}, [myLoads]); // Yük durumu ATANMIS -> YOLDA olunca bu blok tetiklenir
 
 
     // ===========================================
