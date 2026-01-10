@@ -70,6 +70,44 @@ function DriverLoads() {
             setIsUpdating(false);
         }
     };
+    // DriverLoads.jsx içine eklenecek kısım:
+
+useEffect(() => {
+    let locationInterval;
+
+    // Yolda olan bir yük var mı kontrol et
+    const activeLoad = myLoads.find(l => l.status === 'YOLDA');
+
+    if (activeLoad) {
+        // Konum gönderme fonksiyonu
+        const sendLocation = () => {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    async (position) => {
+                        const { latitude, longitude } = position.coords;
+                        try {
+                            // Senin yazdığın servisi çağırıyoruz knk
+                            await loadService.updateLoadLocation(activeLoad.id, latitude, longitude);
+                            console.log("📍 Konum güncellendi:", latitude, longitude);
+                        } catch (err) {
+                            console.error("❌ Konum gönderilemedi:", err);
+                        }
+                    },
+                    (error) => console.error("📡 Geolocation hatası:", error),
+                    { enableHighAccuracy: true }
+                );
+            }
+        };
+
+        // İlk girişte gönder, sonra her 10 saniyede bir tekrarla
+        sendLocation();
+        locationInterval = setInterval(sendLocation, 10000); 
+    }
+
+    return () => {
+        if (locationInterval) clearInterval(locationInterval);
+    };
+}, [myLoads]); // myLoads değiştikçe (yük yolda olunca) takip başlar
 
 
     // ===========================================
