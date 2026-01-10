@@ -92,7 +92,7 @@ export const AuthProvider = ({ children }) => {
             const token = localStorage.getItem("token");
             if (!token) return;
 
-            const res = await axios.get("http://localhost:8080/auth/me", {
+           const res = await axios.get("https://yakup-lojistik-backend.onrender.com/auth/me", {
                 headers: { Authorization: `Bearer ${token.replace(/^Bearer\s+/i, '')}` }
             });
 

@@ -1,7 +1,8 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:8080/rest/v1";
-const AUTH_BASE_URL = "http://localhost:8080/auth";
+// ARTIK LOCALHOST DEĞİL, RENDER ADRESLERİNİ KULLANIYORUZ
+const API_BASE_URL = "https://yakup-lojistik-backend.onrender.com/rest/v1";
+const AUTH_BASE_URL = "https://yakup-lojistik-backend.onrender.com/auth";
 
 // 1. Genel API (Token gerektiren işlemler için)
 const api = axios.create({
@@ -16,8 +17,8 @@ api.interceptors.request.use((config) => {
     }
     return config;
 });
+
 // 2. Auth API (Login/Register için - Token GEREKTİRMEZ)
-// Hatanın sebebi buradaki "export" ifadesinin eksik olmasıydı
 export const authApi = axios.create({
     baseURL: AUTH_BASE_URL,
     headers: { "Content-Type": "application/json" },
