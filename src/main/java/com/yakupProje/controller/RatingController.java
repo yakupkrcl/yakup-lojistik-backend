@@ -46,9 +46,13 @@ public class RatingController {
 	}
 	
 	@GetMapping(path = "/{id}")
-	public DtoRating getRatingById(@PathVariable Long id){
-		return ratingService.getRatingById(id)
-			;
+	public ResponseEntity<?> getRatingById(@PathVariable Long id){
+	    try {
+	        return ResponseEntity.ok(ratingService.getRatingById(id));
+	    } catch (Exception e) {
+	        // Eğer ID bulunamazsa 500 fırlatmak yerine boş bir nesne dön
+	        return ResponseEntity.ok(new DtoRating());
+	    }
 	}
 	
 	@PutMapping(path = "/{id}")

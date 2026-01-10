@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 import com.yakupProje.enums.YukTipi;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.yakupProje.enums.LoadStatus;
 
 @Entity
@@ -51,7 +52,8 @@ public class Load {
 
     @ManyToOne() 
     @JoinColumn(name = "yuk_sahibi_id")
-    private User yukSahibi; 
+    @JsonIgnoreProperties({"createdLoads", "offers", "ratingsPuanlayan", "ratingsPuanlanan", "yuklenenDokumentler", "sifreHash", "authorities"})
+    private User yukSahibi;
 
     @ManyToOne(fetch = FetchType.EAGER) 
     @JoinColumn(name = "kalkis_adres_id")
@@ -62,6 +64,7 @@ public class Load {
     private Location varisAdresi; 
 
     @OneToMany(mappedBy = "yuk")
+    @JsonIgnoreProperties("yuk") 
     private Set<Offer> teklifler;
     
     @OneToMany(mappedBy = "yuk")

@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,13 +39,15 @@ public class Message {
     private Boolean okunduMu = false;
 	
 	@ManyToOne 
-    @JoinColumn(name = "gonderen_id", nullable = false)
-    private User gonderen; 
-
-    @ManyToOne 
-    @JoinColumn(name = "alici_id", nullable = false)
-    private User alici; 
-    
+	@JoinColumn(name = "gonderen_id", nullable = false)
+	@JsonIgnoreProperties({"messagesGonderen", "messagesAlici", "sifreHash"})
+	private User gonderen;
+	
+	@ManyToOne 
+	@JoinColumn(name = "alici_id", nullable = false)
+	@JsonIgnoreProperties({"messagesGonderen", "messagesAlici", "sifreHash"})
+	private User alici;
+	
     @ManyToOne 
     @JoinColumn(name = "yuk_id", nullable = false)
     private Load yuk; 

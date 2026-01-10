@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.yakupProje.enums.DocumentStatus;
 import com.yakupProje.enums.DocumentType; 
 
@@ -30,7 +31,8 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "document", schema = "yuk_takip_sistemi")
+@JsonIgnoreProperties
+@Table(name = "document")
 @EqualsAndHashCode(exclude = {"yuk", "yukleyenKullanici"})
 public class Document {
 
@@ -60,12 +62,14 @@ public class Document {
 	}
 	
 	@ManyToOne 
-    @JoinColumn(name = "yuk_id") 
-    private Load yuk; 
-
-    @ManyToOne 
-    @JoinColumn(name = "yukleyen_kullanici_id", nullable = false)
-    private User yukleyenKullanici; 
+	@JoinColumn(name = "yuk_id") 
+	@JsonIgnoreProperties({"teklifler", "dokumentler", "yukSahibi"})
+	private Load yuk;
+	
+	@ManyToOne 
+	@JoinColumn(name = "yukleyen_kullanici_id", nullable = false)
+	@JsonIgnoreProperties({"yuklenenDokumentler", "createdLoads", "offers", "ratingsPuanlayan", "ratingsPuanlanan", "sifreHash"})
+	private User yukleyenKullanici;
 
     @CreationTimestamp 
 	private LocalDateTime yuklenmeTarihi;

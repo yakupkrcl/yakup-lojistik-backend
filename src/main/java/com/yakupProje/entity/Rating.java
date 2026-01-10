@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 @Data
@@ -28,16 +30,28 @@ public class Rating {
 
     @ManyToOne 
     @JoinColumn(name = "puanlayan_kullanici_id", nullable = false)
+    @JsonIgnoreProperties({"ratingsPuanlayan", "ratingsPuanlanan", "yuklenenDokumentler", "sifreHash", "createdLoads"})
     private User puanlayanKullanici; 
 
     @ManyToOne 
     @JoinColumn(name = "puanlanan_kullanici_id", nullable = false)
-    private User puanlananKullanici; 
+    @JsonIgnoreProperties({
+        "ratingsPuanlanan", 
+        "ratingsPuanlayan", 
+        "offers", 
+        "createdLoads", 
+        "trucks", 
+        "yuklenenDokumentler", 
+        "sifreHash", 
+        "authorities"
+    })
+    private User puanlananKullanici;
     
     @ManyToOne 
     @JoinColumn(name = "yuk_id", nullable = false)
-    private Load yuk; 
-
+    @JsonIgnoreProperties({"teklifler", "yukSahibi"})
+    private Load yuk;
+    
     @CreationTimestamp
     private LocalDateTime olusturulmaTarihi;
 }

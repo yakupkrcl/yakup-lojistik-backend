@@ -133,15 +133,18 @@ public class RatingService implements IRatingService {
 
 	@Override
 	public DtoRating getRatingById(Long id) {
-		Rating dbOptional=this.getRatingEntityById(id);
-	
-			DtoRating dto=new DtoRating();
-			BeanUtils.copyProperties(dbOptional, dto);
-			
-				
-		return dto;
+	    try {
+	        Rating dbRating = ratingRepository.findById(id).orElse(null);
+	        if (dbRating == null) {
+	            return new DtoRating(); // Boş DTO dön, hata fırlatma
+	        }
+	        DtoRating dto = new DtoRating();
+	        BeanUtils.copyProperties(dbRating, dto);
+	        return dto;
+	    } catch (Exception e) {
+	        return new DtoRating();
+	    }
 	}
-
 	@Override
 	public DtoRating updateRating(Long id, DtoRatingIU dtoRatingIU) {
 		Rating dbOptional=this.getRatingEntityById(id);
