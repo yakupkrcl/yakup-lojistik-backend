@@ -15,9 +15,7 @@ const DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 const RouteMap = ({ currentLocation, destination }) => {
-  const hasCurrent =
-    currentLocation && currentLocation[0] && currentLocation[1];
-
+const hasCurrent = currentLocation && currentLocation[0] !== 0 && currentLocation[1] !== 0;
   const hasDest =
     destination && destination[0] && destination[1];
 

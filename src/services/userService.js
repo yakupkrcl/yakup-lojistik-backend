@@ -1,4 +1,6 @@
+
 import api from './api'; 
+
 
 export const getAllUsers = async () => {
     try {
@@ -20,6 +22,7 @@ export const getUserById = async (id) => {
     }
 };
 
+ 
 export const updateUserRole = async (userId, newRole) => {
     try {
         const response = await api.put(`/users/${userId}`, { 
@@ -32,6 +35,7 @@ export const updateUserRole = async (userId, newRole) => {
     }
 };
 
+
 export const deleteUser = async (userId) => {
     try {
         const response = await api.delete(`/users/${userId}`);
@@ -42,15 +46,3 @@ export const deleteUser = async (userId) => {
     }
 };
 
-// 🌟 İşte cüzdanı ve diğer sayfaları kurtaracak olan o kritik ekleme:
-export const getUserProfile = async () => {
-    try {
-        // Zaten api örneğin (axios) içinde muhtemelen token ekleme mantığı vardır, 
-        // direkt get atıyoruz:
-        const response = await api.get('/users/profile');
-        return response.data; 
-    } catch (error) {
-        console.error("Profil bilgileri alınırken hata:", error);
-        throw error.response?.data || error;
-    }
-};

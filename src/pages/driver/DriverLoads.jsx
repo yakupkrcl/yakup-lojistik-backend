@@ -74,7 +74,7 @@ function DriverLoads() {
     let watchId;
 
     // Yolda olan yükü bul
-    const activeLoad = myLoads.find(l => l.status === 'YOLDA');
+    const activeLoad = myLoads.find(l => l.status === 'YOLDA' || l.durum === 'YOLDA');
 
     if (activeLoad && "geolocation" in navigator) {
         console.log("🚀 Canlı takip başlatıldı, yük ID:", activeLoad.id);

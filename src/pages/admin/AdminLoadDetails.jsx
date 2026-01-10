@@ -111,4 +111,4 @@ const AdminLoadDetails = () => {
   );
 };
 
-export default AdminLoadDetails;
+export default AdminLoadDetails;  
