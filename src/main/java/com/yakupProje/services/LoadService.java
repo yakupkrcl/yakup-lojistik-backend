@@ -56,16 +56,17 @@ public class LoadService implements ILoadService {
     
     @Transactional
     public void updateCurrentLocation(Long id, Double lat, Double lng) {
-        int updated = loadRepository.updateCurrentLocation(id, lat, lng);
+        // Repository'deki custom query yerine entity üzerinden gidelim ki Hibernate yönetebilsin
+        Load load = loadRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Yük bulunamadı"));
+        
+        load.setCurrentLat(lat);
+        load.setCurrentLng(lng);
+        
+        loadRepository.save(load); // Bu satır verinin DB'ye yazılmasını kesinleştirir.
 
-        if (updated == 0) {
-            throw new RuntimeException("Yük bulunamadı");
-        }
-
-        System.out.println("📍 [DB UPDATE] Yük ID: " + id + 
-            " -> Yeni Konum: " + lat + "," + lng);
+        System.out.println("📍 [DB UPDATE SUCCESS] ID: " + id + " -> Lat: " + lat + " Lng: " + lng);
     }
-
     
     @Override
     public List<DtoLoad> getLoadsByDriver(String driverEmail) {
