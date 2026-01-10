@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.yakupProje.enums.UserType;
 
 @Entity
@@ -26,8 +25,8 @@ import com.yakupProje.enums.UserType;
 @EqualsAndHashCode(exclude = {
 	    "trucks", "createdLoads", "offers", "transactionsYapan", "transactionsAlan",
 	    "ratingsPuanlayan", "ratingsPuanlanan", "messagesGonderen", "messagesAlici",
-	    "documents" 
-	})
+	    "yuklenenDokumentler"
+})
 public class User implements UserDetails {
 
     @Id
@@ -95,9 +94,8 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "alici") @JsonIgnore
     private Set<Message> messagesAlici;
 
-    @OneToMany(mappedBy = "yukleyenKullanici")
-    @JsonIgnoreProperties("yukleyenKullanici")
-    private Set<Document> documents;
+    @OneToMany(mappedBy = "yukleyenKullanici") @JsonIgnore
+    private Set<Document> yuklenenDokumentler;
 
 
     @Override
