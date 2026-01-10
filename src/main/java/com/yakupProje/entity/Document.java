@@ -31,7 +31,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "document", schema = "yuk_takip_sistemi")
+@Table(name = "document")
 @EqualsAndHashCode(exclude = {"yuk", "yukleyenKullanici"})
 public class Document {
 
