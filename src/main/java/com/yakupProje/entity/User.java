@@ -26,8 +26,8 @@ import com.yakupProje.enums.UserType;
 @EqualsAndHashCode(exclude = {
 	    "trucks", "createdLoads", "offers", "transactionsYapan", "transactionsAlan",
 	    "ratingsPuanlayan", "ratingsPuanlanan", "messagesGonderen", "messagesAlici",
-	    "yuklenenDokumentler"
-})
+	    "documents" 
+	})
 public class User implements UserDetails {
 
     @Id
