@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.yakupProje.enums.OfferStatus;
 
 import jakarta.persistence.CascadeType;
@@ -58,10 +59,12 @@ public class Offer {
     
     @ManyToOne 
     @JoinColumn(name = "load_id", nullable = false)
+    @JsonIgnoreProperties({"teklifler", "dokumentler", "yukSahibi"})
     private Load yuk;
     
     @ManyToOne 
     @JoinColumn(name = "tasiyici_id", nullable = false)
+    @JsonIgnoreProperties({"offers", "trucks", "ratingsPuanlanan", "documents"})
     private User tasiyici;
     
     @OneToOne(mappedBy = "teklif", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

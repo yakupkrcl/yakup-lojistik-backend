@@ -40,7 +40,8 @@ public class Rating {
     
     @ManyToOne 
     @JoinColumn(name = "yuk_id", nullable = false)
-    private Load yuk; 
+    @JsonIgnoreProperties({"teklifler", "dokumentler", "yukSahibi"})
+    private Load yuk;
 
     @CreationTimestamp
     private LocalDateTime olusturulmaTarihi;
