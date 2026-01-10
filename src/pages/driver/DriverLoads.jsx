@@ -70,49 +70,6 @@ function DriverLoads() {
             setIsUpdating(false);
         }
     };
-    useEffect(() => {
-    let watchId;
-
-    // Yolda olan yükü bul
-    const activeLoad = myLoads.find(l => l.status === 'YOLDA' || l.durum === 'YOLDA');
-
-    if (activeLoad && "geolocation" in navigator) {
-        console.log("🚀 Canlı takip başlatıldı, yük ID:", activeLoad.id);
-
-        // watchPosition: Konum her değiştiğinde otomatik tetiklenir
-        watchId = navigator.geolocation.watchPosition(
-            async (position) => {
-                const { latitude, longitude } = position.coords;
-                
-                try {
-                    // Backend'e taze veriyi basıyoruz
-                    await loadService.updateLoadLocation(activeLoad.id, latitude, longitude);
-                    console.log(`📍 Konum DB'ye basıldı: ${latitude}, ${longitude}`);
-                    
-                    // ÖNEMLİ: Eğer Driver ekranında harita varsa, 
-                    // buraya setDriverLocation({lat: latitude, lng: longitude}) diyerek 
-                    // driver'ın kendisini görmesini sağlayabilirsin.
-                } catch (err) {
-                    console.error("❌ DB Güncelleme hatası:", err);
-                }
-            },
-            (error) => console.error("📡 Geolocation hatası:", error),
-            { 
-                enableHighAccuracy: true, // En yüksek hassasiyet
-                maximumAge: 0,            // Önbellekten okuma, hep taze getir
-                timeout: 5000             // 5 saniyede bir zorla
-            }
-        );
-    }
-
-    // Bileşen kapandığında veya yük bittiğinde takibi durdur
-    return () => {
-        if (watchId) {
-            navigator.geolocation.clearWatch(watchId);
-            console.log("🛑 Takip durduruldu.");
-        }
-    };
-}, [myLoads]); // Yük durumu ATANMIS -> YOLDA olunca bu blok tetiklenir
 
 
     // ===========================================
