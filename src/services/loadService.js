@@ -13,12 +13,13 @@ export const getAllLoads = async () => {
     return response.data;
 };
 export const updateLoadLocation = (loadId, lat, lng) => {
+  // Veriyi 'params' yerine 'body' (orta kısım) olarak gönderiyoruz
   return api.post(
     `/loads/${loadId}/update-location`,
-    null,
-    {
-      params: { lat, lng }
-    }
+    { 
+      latitude: lat, 
+      longitude: lng 
+    } 
   );
 };
 
