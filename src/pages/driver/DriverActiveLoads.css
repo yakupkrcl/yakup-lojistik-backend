@@ -536,3 +536,18 @@
   height: 2px;
   background: repeating-linear-gradient(90deg, #cbd5e1, #cbd5e1 4px, transparent 4px, transparent 8px);
 }
+/* Harita kapsayıcısı için mobil dokunmatik ayarı */
+.map-wrapper {
+  touch-action: pan-y !important; /* Sayfanın aşağı kaymasını engellemesin */
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1; /* Diğer elementlerin altında kalmasın */
+}
+
+/* Eğer harita mobilde çok büyükse yüksekliği de buradan kontrol edebilirsin */
+@media screen and (max-width: 768px) {
+  .map-wrapper {
+    height: 250px !important;
+  }
+}

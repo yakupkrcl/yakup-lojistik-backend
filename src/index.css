@@ -11,3 +11,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* Tablet ve Telefonlar için (Ekran 768px'den küçükse) */
+@media screen and (max-width: 768px) {
+  /* Ana kapsayıcıyı tek sütun yap */
+  .active-grid, .grid-container {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 10px !important;
+  }
+
+  /* Kartları tam genişlik yap */
+  .active-card, .load-card {
+    width: 100% !important;
+    margin-bottom: 15px !important;
+  }
+
+  /* Harita yüksekliğini mobilde kısıtla ki sayfa kaydırılabilsin */
+  .map-wrapper {
+    height: 200px !important;
+  }
+
+  /* Butonları mobilde büyüt (parmakla basımı kolaylaşsın) */
+  .btn-main, .btn-primary {
+    width: 100% !important;
+    font-size: 16px !important;
+    padding: 12px !important;
+  }
+}
