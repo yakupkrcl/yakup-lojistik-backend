@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.yakupProje.enums.UserType;
 
 @Entity
@@ -94,8 +95,9 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "alici") @JsonIgnore
     private Set<Message> messagesAlici;
 
-    @OneToMany(mappedBy = "yukleyenKullanici") @JsonIgnore
-    private Set<Document> yuklenenDokumentler;
+    @OneToMany(mappedBy = "yukleyenKullanici")
+    @JsonIgnoreProperties("yukleyenKullanici")
+    private Set<Document> documents;
 
 
     @Override

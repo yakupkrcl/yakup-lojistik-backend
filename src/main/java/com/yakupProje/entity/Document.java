@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.yakupProje.enums.DocumentStatus;
 import com.yakupProje.enums.DocumentType; 
 
@@ -63,9 +64,10 @@ public class Document {
     @JoinColumn(name = "yuk_id") 
     private Load yuk; 
 
-    @ManyToOne 
-    @JoinColumn(name = "yukleyen_kullanici_id", nullable = false)
-    private User yukleyenKullanici; 
+	@ManyToOne 
+	@JoinColumn(name = "yukleyen_kullanici_id", nullable = false)
+	@JsonIgnoreProperties({"documents", "loads", "offers", "ratings", "notifications", "sifreHash"}) 
+	private User yukleyenKullanici;
 
     @CreationTimestamp 
 	private LocalDateTime yuklenmeTarihi;
