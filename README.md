@@ -19,7 +19,7 @@ Projeyi şu adresten inceleyebilirsiniz: [https://yakup-lojistik.vercel.app/](ht
 
 ## 📸 Ekran Görüntüsü
 *(Buraya telefonundan veya bilgisayarından aldığın bir ekran görüntüsünü projenin içine atıp linkini verebilirsin)*
-![Uygulama Görünümü](https://via.placeholder.com/600x400?text=Lojistik+Takip+Sistemi+Ekran+Görüntüsü)
+![Uygulama Ekran Görüntüsü](./screenshot.png)
 
 ---
 Developed by [yakupkrcl](https://github.com/yakupkrcl)
