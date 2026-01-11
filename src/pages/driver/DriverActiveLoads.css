@@ -536,49 +536,29 @@
   height: 2px;
   background: repeating-linear-gradient(90deg, #cbd5e1, #cbd5e1 4px, transparent 4px, transparent 8px);
 }
-/* Harita kapsayıcısı için mobil dokunmatik ayarı */
+/* Harita kapsayıcısı için genel ayar */
 .map-wrapper {
-  touch-action: pan-y !important; /* Sayfanın aşağı kaymasını engellemesin */
+  width: 100% !important; /* Genişliği her zaman tam ekran yap */
+  margin: 10px 0;
   border-radius: 12px;
   overflow: hidden;
+  height: 350px; /* Bilgisayar için ideal yükseklik */
   position: relative;
-  z-index: 1; /* Diğer elementlerin altında kalmasın */
 }
 
-/* Eğer harita mobilde çok büyükse yüksekliği de buradan kontrol edebilirsin */
+/* --- MOBİL İÇİN ÖZEL AYAR (Android/iOS) --- */
 @media screen and (max-width: 768px) {
   .map-wrapper {
-    height: 250px !important;
-  }
-}
-/* --- MOBIL UYUMLULUK AYARLARI --- */
-
-/* Harita üzerinde sayfa kaydırma sorunu için */
-.map-wrapper {
-  touch-action: pan-y !important; /* Harita parmağı hapsetmesin, sayfa kaysın */
-  border-radius: 12px;
-  overflow: hidden;
-  height: 300px; /* Varsayılan yükseklik */
-}
-
-/* Telefonlar için (768px altı) */
-@media screen and (max-width: 768px) {
-  .active-grid {
-    grid-template-columns: 1fr !important; /* Kartları tek sütun yap */
-    gap: 15px;
+    /* Mobilde sağdan soldan boşluk kalmasın diye genişliği zorluyoruz */
+    width: calc(100% + 20px) !important; 
+    margin-left: -10px !important; /* Eğer kartın padding'i varsa onu sıfırlar */
+    height: 300px !important; /* Mobilde biraz daha dikey alan kalsın */
+    border-radius: 0; /* Mobilde haritayı kenarlara sıfırlamak daha modern durur */
   }
 
-  .active-card {
-    margin: 0 auto;
-    width: 100%;
-  }
-
-  .map-wrapper {
-    height: 220px !important; /* Mobilde harita daha küçük olsun */
-  }
-
-  .btn-main {
-    padding: 15px !important; /* Mobilde butonlar kocaman olsun */
-    font-size: 16px;
+  /* Haritanın kendi içindeki leaflet container'ı */
+  .leaflet-container {
+    width: 100% !important;
+    height: 100% !important;
   }
 }
