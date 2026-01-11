@@ -551,3 +551,34 @@
     height: 250px !important;
   }
 }
+/* --- MOBIL UYUMLULUK AYARLARI --- */
+
+/* Harita üzerinde sayfa kaydırma sorunu için */
+.map-wrapper {
+  touch-action: pan-y !important; /* Harita parmağı hapsetmesin, sayfa kaysın */
+  border-radius: 12px;
+  overflow: hidden;
+  height: 300px; /* Varsayılan yükseklik */
+}
+
+/* Telefonlar için (768px altı) */
+@media screen and (max-width: 768px) {
+  .active-grid {
+    grid-template-columns: 1fr !important; /* Kartları tek sütun yap */
+    gap: 15px;
+  }
+
+  .active-card {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .map-wrapper {
+    height: 220px !important; /* Mobilde harita daha küçük olsun */
+  }
+
+  .btn-main {
+    padding: 15px !important; /* Mobilde butonlar kocaman olsun */
+    font-size: 16px;
+  }
+}

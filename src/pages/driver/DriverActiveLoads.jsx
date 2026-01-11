@@ -41,27 +41,46 @@ function DriverActiveLoads() {
     }
   }, []);
 
-  const startTracking = (loadId) => {
-    if (trackingRefs.current[loadId]) return;
-    trackingRefs.current[loadId] = setInterval(() => {
-      navigator.geolocation.getCurrentPosition(
-        async (pos) => {
-          const { latitude, longitude, accuracy } = pos.coords;
-          const MAX_ACCURACY = process.env.NODE_ENV === 'development' ? 500 : 50;
-          if (accuracy && accuracy > MAX_ACCURACY) return;
+  // DriverActiveLoads.jsx içindeki startTracking fonksiyonunu bununla DEĞİŞTİR:
+const startTracking = (loadId) => {
+  if (trackingRefs.current[loadId]) return;
 
-          setDriverPositions(prev => ({ ...prev, [loadId]: [latitude, longitude] }));
-          try {
-            await loadService.updateLoadLocation(loadId, latitude, longitude);
-          } catch (err) {
-            console.error("Konum hatası:", err);
-          }
-        },
-        (err) => console.error(err),
-        { enableHighAccuracy: true, timeout: 10000 }
-      );
-    }, 10000); // 10 saniye idealdir
-  };
+  console.log("🛰️ GPS Takibi Başlatılıyor...");
+
+  // watchPosition, getCurrentPosition'dan çok daha kararlıdır
+  trackingRefs.current[loadId] = navigator.geolocation.watchPosition(
+    async (pos) => {
+      const { latitude, longitude, accuracy } = pos.coords;
+      
+      // Hassasiyet filtresini mobilde biraz gevşettik (200 metre yaptık)
+      if (accuracy && accuracy > 200) {
+        console.warn("📍 Zayıf GPS sinyali, hassasiyet:", accuracy);
+        return;
+      }
+
+      console.log("📍 Konum Yakalandı:", latitude, longitude);
+      setDriverPositions(prev => ({ ...prev, [loadId]: [latitude, longitude] }));
+
+      try {
+        await loadService.updateLoadLocation(loadId, latitude, longitude);
+      } catch (err) {
+        console.error("❌ DB Güncelleme Hatası:", err);
+        // İstersen buraya küçük bir uyarı ekleyebilirsin
+      }
+    },
+    (err) => {
+      // Sürücüye neden olmadığını söyleyen Toast mesajları:
+      if (err.code === 1) addToast("Lütfen konum izni verin!", "error");
+      if (err.code === 3) addToast("GPS zaman aşımına uğradı.", "warning");
+      console.error("🚨 Geolocation Hatası:", err.message);
+    },
+    { 
+      enableHighAccuracy: true, 
+      timeout: 15000, 
+      maximumAge: 0 
+    }
+  );
+};
 
   useEffect(() => {
     fetchLoads();
