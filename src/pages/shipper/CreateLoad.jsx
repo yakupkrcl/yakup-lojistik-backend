@@ -147,10 +147,8 @@ const CreateLoad = () => {
               <select name="kalkisAdresiId" value={formData.kalkisAdresiId} onChange={handleChange} required>
                 <option value="">Seçiniz...</option>
                 {locations.map(loc => (
-<option key={loc.id} value={loc.id}>
-   {/* Başına bir emoji koy, bakalım mobilde görünecek mi */}
-   📍 {loc.sehir} - {loc.ilce}
-</option>                ))}
+                  <option key={loc.id} value={loc.id}>{loc.sehir} - {loc.ilce}</option>
+                ))}
               </select>
             </div>
 
@@ -159,10 +157,8 @@ const CreateLoad = () => {
               <select name="varisAdresiId" value={formData.varisAdresiId} onChange={handleChange} required>
                 <option value="">Seçiniz...</option>
                 {locations.map(loc => (
-<option key={loc.id} value={loc.id}>
-   {/* Başına bir emoji koy, bakalım mobilde görünecek mi */}
-   📍 {loc.sehir} - {loc.ilce}
-</option>                ))}
+                  <option key={loc.id} value={loc.id}>📍{loc.sehir} - {loc.ilce}</option>
+                ))}
               </select>
             </div>
 

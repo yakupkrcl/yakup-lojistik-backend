@@ -23,6 +23,31 @@ h2 { color: #2d3436; margin-bottom: 8px; }
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
+.form-group select {
+    padding: 12px;
+    border: 1px solid #dfe6e9;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border 0.3s;
+    
+    /* 🔥 MOBİL İÇİN KRİTİK EKLEMELER 🔥 */
+    color: #2d3436 !important; /* Yazı rengini zorla koyu yap */
+    background-color: #ffffff !important; /* Arka planı zorla beyaz yap */
+    -webkit-appearance: menulist !important; /* Standart liste görünümünü zorla */
+    appearance: menulist !important;
+}
+
+.form-group select option {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+}
+
+/* Mobilde dokunmatik alanın büyüklüğü de bazen sorunu tetikler, bunu da ekle */
+@media screen and (max-width: 600px) {
+    .form-group select {
+        height: 50px; /* Seçme alanı mobilde daha belirgin olsun */
+    }
+}
 
 .form-group {
     display: flex;
