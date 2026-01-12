@@ -157,7 +157,7 @@ const CreateLoad = () => {
               <select name="varisAdresiId" value={formData.varisAdresiId} onChange={handleChange} required>
                 <option value="">Seçiniz...</option>
                 {locations.map(loc => (
-                  <option key={loc.id} value={loc.id}>📍{loc.sehir} - {loc.ilce}</option>
+                  <option key={loc.id} value={loc.id}>{loc.sehir} - {loc.ilce}</option>
                 ))}
               </select>
             </div>
