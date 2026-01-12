@@ -148,3 +148,7 @@ h2 { color: #2d3436; margin-bottom: 8px; }
     font-weight: bold;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+select option {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+}
