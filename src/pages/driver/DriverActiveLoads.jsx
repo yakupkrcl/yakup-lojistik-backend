@@ -24,7 +24,7 @@ function DriverActiveLoads() {
     setToasts(prev => prev.filter(t => t.id !== id));
   };
 
-  const startTracking = (loadId) => {
+const startTracking = (loadId) => {
     if (trackingRefs.current[loadId]) return;
 
     console.log("🛰️ GPS Takibi Başlatılıyor...");
@@ -32,16 +32,17 @@ function DriverActiveLoads() {
     const watchId = navigator.geolocation.watchPosition(
       async (pos) => {
         const { latitude, longitude, accuracy } = pos.coords;
-        if (accuracy && accuracy > 1000) { 
-  console.warn("📍 Gerçekten zayıf sinyal, atlanıyor. Hassasiyet:", accuracy);
-  return;
-}
+        
+        // 1000 metreden kötüyse işleme alma (Log basmıyoruz ki kalabalık etmesin)
+        if (accuracy && accuracy > 1000) return;
 
-// Eğer hassasiyet iyiyse (381, 500 vb.) burası çalışacak:
-console.log("✅ Konum Yakalandı! Hassasiyet:", accuracy, "Metre");
-setDri
+        // State güncelleme (Buradaki yazım hatasını düzelttim)
+        setDriverPositions(prev => ({ ...prev, [loadId]: [latitude, longitude] }));
+
         try {
+          // Backend'e gönder
           await loadService.updateLoadLocation(loadId, latitude, longitude);
+          console.log(`📍 Konum Güncellendi: ${latitude.toFixed(4)}, ${longitude.toFixed(4)}`);
         } catch (err) {
           console.error("❌ DB Güncelleme Hatası:", err);
         }
