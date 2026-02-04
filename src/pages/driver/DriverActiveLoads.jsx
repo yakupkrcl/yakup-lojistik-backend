@@ -32,15 +32,14 @@ function DriverActiveLoads() {
     const watchId = navigator.geolocation.watchPosition(
       async (pos) => {
         const { latitude, longitude, accuracy } = pos.coords;
-        
-        if (accuracy && accuracy > 1500) { 
-          console.warn("📍 Konum hassasiyeti düşük (1.5km+), veri gönderilmedi. Hassasiyet:", accuracy);
-          return;
-        }
+        if (accuracy && accuracy > 1000) { 
+  console.warn("📍 Gerçekten zayıf sinyal, atlanıyor. Hassasiyet:", accuracy);
+  return;
+}
 
-        console.log("📍 Konum Güncellendi:", latitude, longitude);
-        setDriverPositions(prev => ({ ...prev, [loadId]: [latitude, longitude] }));
-
+// Eğer hassasiyet iyiyse (381, 500 vb.) burası çalışacak:
+console.log("✅ Konum Yakalandı! Hassasiyet:", accuracy, "Metre");
+setDri
         try {
           await loadService.updateLoadLocation(loadId, latitude, longitude);
         } catch (err) {
