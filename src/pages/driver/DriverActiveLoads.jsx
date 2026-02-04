@@ -2,19 +2,18 @@ import React, { useEffect, useState, useCallback, useRef } from 'react';
 import * as loadService from '../../services/loadService';
 import RouteMap from '../../components/common/RouteMap';
 import ApprovalModal from '../../components/common/ApprovalModal';
-import ToastManager from '../../components/common/ToastManager'; // ✅ Eklendi
+import ToastManager from '../../components/common/ToastManager';
 import './DriverActiveLoads.css';
 
 function DriverActiveLoads() {
   const [loads, setLoads] = useState([]);
   const [loading, setLoading] = useState(true);
   const [action, setAction] = useState(null);
-  const [deliveryCode, setDeliveryCode] = useState(''); // ✅ Teslimat kodu için
-  const [toasts, setToasts] = useState([]); // ✅ Toast yönetimi için
+  const [deliveryCode, setDeliveryCode] = useState('');
+  const [toasts, setToasts] = useState([]);
   const [driverPositions, setDriverPositions] = useState({});
   const trackingRefs = useRef({});
 
-  // ✅ Toast Ekleme Fonksiyonu
   const addToast = (message, type = 'info') => {
     const id = Date.now();
     setToasts(prev => [...prev, { id, message, type }]);
@@ -23,6 +22,43 @@ function DriverActiveLoads() {
 
   const removeToast = (id) => {
     setToasts(prev => prev.filter(t => t.id !== id));
+  };
+
+  const startTracking = (loadId) => {
+    if (trackingRefs.current[loadId]) return;
+
+    console.log("🛰️ GPS Takibi Başlatılıyor...");
+
+    trackingRefs.current[loadId] = navigator.geolocation.watchPosition(
+      async (pos) => {
+        const { latitude, longitude, accuracy } = pos.coords;
+        
+        // ✅ Hassasiyeti 5000 yaptık ki loglarda gördüğün 381-500 arası değerler geçebilsin
+        if (accuracy && accuracy > 5000) { 
+          console.warn("📍 Çok zayıf GPS sinyali, konum güncellenmedi:", accuracy);
+          return;
+        }
+
+        console.log("📍 Konum Yakalandı:", latitude, longitude);
+        setDriverPositions(prev => ({ ...prev, [loadId]: [latitude, longitude] }));
+
+        try {
+          await loadService.updateLoadLocation(loadId, latitude, longitude);
+        } catch (err) {
+          console.error("❌ DB Güncelleme Hatası:", err);
+        }
+      },
+      (err) => {
+        if (err.code === 1) addToast("Lütfen konum izni verin!", "error");
+        if (err.code === 3) addToast("GPS zaman aşımına uğradı.", "warning");
+        console.error("🚨 Geolocation Hatası:", err.message);
+      },
+      { 
+        enableHighAccuracy: true, 
+        timeout: 15000, 
+        maximumAge: 0 
+      }
+    );
   };
 
   const fetchLoads = useCallback(async () => {
@@ -41,78 +77,34 @@ function DriverActiveLoads() {
     }
   }, []);
 
-  // DriverActiveLoads.jsx içindeki startTracking fonksiyonunu bununla DEĞİŞTİR:
-const startTracking = (loadId) => {
-  if (trackingRefs.current[loadId]) return;
-
-  console.log("🛰️ GPS Takibi Başlatılıyor...");
-
-  // watchPosition, getCurrentPosition'dan çok daha kararlıdır
-  trackingRefs.current[loadId] = navigator.geolocation.watchPosition(
-    async (pos) => {
-      const { latitude, longitude, accuracy } = pos.coords;
-      
-      // Hassasiyet filtresini mobilde biraz gevşettik (200 metre yaptık)
-     if (accuracy && accuracy > 5000) { 
-  console.warn("📍 Çok zayıf GPS sinyali, konum güncellenmedi:", accuracy);
-  return;
-}
-
-      console.log("📍 Konum Yakalandı:", latitude, longitude);
-      setDriverPositions(prev => ({ ...prev, [loadId]: [latitude, longitude] }));
-
-      try {
-        await loadService.updateLoadLocation(loadId, latitude, longitude);
-      } catch (err) {
-        console.error("❌ DB Güncelleme Hatası:", err);
-        // İstersen buraya küçük bir uyarı ekleyebilirsin
-      }
-    },
-    (err) => {
-      // Sürücüye neden olmadığını söyleyen Toast mesajları:
-      if (err.code === 1) addToast("Lütfen konum izni verin!", "error");
-      if (err.code === 3) addToast("GPS zaman aşımına uğradı.", "warning");
-      console.error("🚨 Geolocation Hatası:", err.message);
-    },
-    { 
-      enableHighAccuracy: true, 
-      timeout: 15000, 
-      maximumAge: 0 
-    }
-  );
-};
-
   useEffect(() => {
     fetchLoads();
-    return () => Object.values(trackingRefs.current).forEach(id => navigator.geolocation.clearWatch(id));
+    // ✅ Temizlik için navigator.geolocation.clearWatch kullanıyoruz
+    return () => {
+      Object.values(trackingRefs.current).forEach(id => navigator.geolocation.clearWatch(id));
+    };
   }, [fetchLoads]);
 
   const handleConfirm = async () => {
     if (!action) return;
-
     try {
-      // ✅ TESLİMAT DURUMU: KODLU ONAY
       if (action.status === 'TESLIM_EDILDI') {
         if (!deliveryCode || deliveryCode.length < 6) {
           addToast("Lütfen 6 haneli geçerli kodu girin!", "warning");
           return;
         }
-        // Backend'e kodla birlikte gönderiyoruz
         await loadService.confirmDeliveryWithCode(action.id, deliveryCode);
         
-        const interval = trackingRefs.current[action.id];
-        if (interval) {
-          clearInterval(interval);
+        if (trackingRefs.current[action.id]) {
+          navigator.geolocation.clearWatch(trackingRefs.current[action.id]);
           delete trackingRefs.current[action.id];
         }
         addToast("Yük başarıyla teslim edildi!", "success");
       } else {
-        // YOLA ÇIKTI DURUMU
         await loadService.updateLoadStatus(action.id, action.status);
         if (action.status === 'YOLDA') startTracking(action.id);
         addToast("Yolculuk başladı, iyi sürüşler!", "info");
       }
-
       setAction(null);
       setDeliveryCode('');
       fetchLoads();
@@ -126,12 +118,10 @@ const startTracking = (loadId) => {
   return (
     <div className="active-loads-page">
       <ToastManager toasts={toasts} removeToast={removeToast} />
-      
       <header className="page-header">
         <h1>🚛 Aktif Sürüşlerim</h1>
         <p>Yoldaki yüklerinizi yönetin ve anlık takip edin.</p>
       </header>
-      
 
       <div className="active-grid">
         {loads.length === 0 ? (
@@ -142,11 +132,8 @@ const startTracking = (loadId) => {
               <div className={`status-tag ${load.durum}`}>
                 {load.durum.replaceAll('_', ' ')}
               </div>
-
               <div className="map-wrapper">
-                
                 <RouteMap
-                
                   currentLocation={
                     load.durum === 'YOLDA' && driverPositions[load.id]
                       ? driverPositions[load.id]
@@ -155,7 +142,6 @@ const startTracking = (loadId) => {
                   destination={[load.varisAdresi?.enlem, load.varisAdresi?.boylam]}
                 />
               </div>
-
               <div className="card-body">
                 <div className="route-info">
                   <div className="city-info">
@@ -168,14 +154,12 @@ const startTracking = (loadId) => {
                     <span>⚖️ {load.agirlikKg} kg</span>
                   </div>
                 </div>
-
                 <div className="card-footer">
                   {load.durum === 'TEKLIF_KABUL_EDILDI' && (
                     <button className="btn-main start" onClick={() => setAction({ id: load.id, status: 'YOLDA', title: 'Yola Çıkış Onayı' })}>
                       Sürüşü Başlat
                     </button>
                   )}
-
                   {load.durum === 'YOLDA' && (
                     <button className="btn-main finish" onClick={() => setAction({ id: load.id, status: 'TESLIM_EDILDI', title: 'Teslimatı Onayla' })}>
                       Teslimatı Tamamla
@@ -184,8 +168,7 @@ const startTracking = (loadId) => {
                 </div>
               </div>
             </div>
-          ))
-        )}
+          ))}
       </div>
 
       <ApprovalModal
