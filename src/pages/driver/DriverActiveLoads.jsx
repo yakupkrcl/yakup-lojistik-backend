@@ -33,8 +33,8 @@ function DriverActiveLoads() {
       async (pos) => {
         const { latitude, longitude, accuracy } = pos.coords;
         
-        if (accuracy && accuracy > 5000) { 
-          console.warn("📍 Zayıf GPS sinyali:", accuracy);
+        if (accuracy && accuracy > 1500) { 
+          console.warn("📍 Konum hassasiyeti düşük (1.5km+), veri gönderilmedi. Hassasiyet:", accuracy);
           return;
         }
 
@@ -52,7 +52,7 @@ function DriverActiveLoads() {
         if (err.code === 1) addToast("Konum izni reddedildi!", "error");
         else if (err.code === 3) addToast("GPS zaman aşımı.", "warning");
       },
-      { enableHighAccuracy: true, timeout: 000, maximumAge: 0 }
+      { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
     );
 
     trackingRefs.current[loadId] = watchId;
