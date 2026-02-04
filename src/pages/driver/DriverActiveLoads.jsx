@@ -53,7 +53,7 @@ const startTracking = (loadId) => {
       const { latitude, longitude, accuracy } = pos.coords;
       
       // Hassasiyet filtresini mobilde biraz gevşettik (200 metre yaptık)
-     if (accuracy && accuracy > 1000) { 
+     if (accuracy && accuracy > 5000) { 
   console.warn("📍 Çok zayıf GPS sinyali, konum güncellenmedi:", accuracy);
   return;
 }
