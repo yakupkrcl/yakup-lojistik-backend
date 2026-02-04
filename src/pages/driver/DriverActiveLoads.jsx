@@ -53,10 +53,10 @@ const startTracking = (loadId) => {
       const { latitude, longitude, accuracy } = pos.coords;
       
       // Hassasiyet filtresini mobilde biraz gevşettik (200 metre yaptık)
-      if (accuracy && accuracy > 200) {
-        console.warn("📍 Zayıf GPS sinyali, hassasiyet:", accuracy);
-        return;
-      }
+     if (accuracy && accuracy > 1000) { 
+  console.warn("📍 Çok zayıf GPS sinyali, konum güncellenmedi:", accuracy);
+  return;
+}
 
       console.log("📍 Konum Yakalandı:", latitude, longitude);
       setDriverPositions(prev => ({ ...prev, [loadId]: [latitude, longitude] }));
@@ -84,7 +84,7 @@ const startTracking = (loadId) => {
 
   useEffect(() => {
     fetchLoads();
-    return () => Object.values(trackingRefs.current).forEach(clearInterval);
+    return () => Object.values(trackingRefs.current).forEach(id => navigator.geolocation.clearWatch(id));
   }, [fetchLoads]);
 
   const handleConfirm = async () => {

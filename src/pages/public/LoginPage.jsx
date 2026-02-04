@@ -34,7 +34,7 @@ const LoginPage = () => {
     if (isLoading) return <div>Yükleniyor...</div>;
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault();  
         setError(null);
         setLoading(true);
 
