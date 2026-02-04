@@ -52,7 +52,7 @@ function DriverActiveLoads() {
         if (err.code === 1) addToast("Konum izni reddedildi!", "error");
         else if (err.code === 3) addToast("GPS zaman aşımı.", "warning");
       },
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+      { enableHighAccuracy: true, timeout: 000, maximumAge: 0 }
     );
 
     trackingRefs.current[loadId] = watchId;
