@@ -140,7 +140,7 @@ useEffect(() => {
   return (
     <header className={styles.navbar}>
       <div className={styles.logoContainer}>
-        <Link to="/" className={styles.logo}>LOGİSTİK</Link>
+        <Link to="/" className={styles.logo}>LOjİSTİK</Link>
       </div>
       <nav className={styles.navLinks}>
         <Link to="/" className={styles.navLink}>Anasayfa</Link>
